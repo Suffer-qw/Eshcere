@@ -3,23 +3,25 @@
 #include <math.h>
 using namespace std;
 
-void romb(float &a, float &b)
+void romb(float& y, float& x)
 {
-	int yes = 0;
-	if (a >= -1 && a <= 1) {
-		yes = yes + 1;
-	}
-	if (b >= -0.5 && b <= 0.5) {
-		yes = yes + 1;
-	}
-	if (yes == 1) {
-		cout << "point in figyra";
+	if ((y >= -0.5*x - 1 && y <= 0.5*x + 1) or (1 > pow(y,2) + pow(x, 2) && x>=0)) {
+		cout << "verno";
 	}
 	else {
 		cout << "not verno";
 	}
 }
-
+/*void romb(float& y, float& x)
+{
+	if ((y >= 2 * x - 1) && (y <= 2 * x + 1)&& (y >= -2 * x - 1) && (y <= -2 * x + 1)) {
+		cout << "verno";
+	}
+	else {
+		cout << "not verno";
+	}
+}
+*/
 
 int main()
 {
