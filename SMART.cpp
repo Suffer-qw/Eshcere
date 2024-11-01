@@ -20,7 +20,7 @@ void chisla(string& y )
     if (oper == "/") {
         cout << numOne / numTwo;
     }
-    cout << oper;
+
 }
 
 int main()
