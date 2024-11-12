@@ -43,6 +43,9 @@ int* ArrytargetDEL(int* arry, int target, int size) {
     int j = 0;
     int* newarr = new int[z];
     for (int i = 0; i < size; i++) {
+        if (j == z) {
+            break;
+        }
         if (arry[i] == target){
             continue;
             j--;
@@ -51,6 +54,7 @@ int* ArrytargetDEL(int* arry, int target, int size) {
             newarr[j] = arry[i];
         }
         j++;
+      
     }
     delete arry;
     return newarr;
@@ -83,7 +87,7 @@ int main()
     cout << "|";
     cin >> target;
     int* newqwe = ArrytargetDEL(qwe, target, size_a);
-    for (int i = 0; i < size_a ; i++) {
+    for (int i = 0; i < size_a - 1 ; i++) {
         cout << newqwe[i] << " ";
     }
         
