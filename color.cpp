@@ -8,36 +8,38 @@
 #include <stdlib.h>
 using namespace std;
 
-int[] nextColor(int arr[9]) {
-    swap(arr[0],arr[8]);
-
-    for (int i = 1; i < 7; i++) {
-        arr[i + 1] = arr[i];
-    }
-
-    return arr;
-}
-
 int main()
 {
-    int zxc = rand();
+    int zxc = 12;
 
-    int arr[9]{ 40,41,42,43,44,45,46,47,48 };
+    int arr[14]{ 40,41,42,43,44,45,46, 100, 101, 102, 103, 104, 105,106};
 
 
+    while (true) {
+        for (int i = 0;i < 14; i++) {
+            for (int j = 0; j < 14; j++) {
+                string color = to_string(arr[j]);
+                string num = to_string(zxc);
+                string ccl = "\033[" + color + "m";
+                Sleep(13);
+                cout << ccl << num << "(" << color  << ")";
+            }
+            for (int x = 13; x > 0; x--) {
+                if (x + 1 == 14) {
+                    swap(arr[0], arr[13]);
+                    continue;
+                }
+                swap(arr[x + 1], arr[x]);
 
-    for (int j = 0; j < 100; j++) {
-        for (int i = 40 + j; i < 47 ; i++) {
-            string color = to_string(i);
-            string num = to_string(zxc);
-            string ccl = "\033[" + color + "m";
-            cout << ccl << num;
-            Sleep(100);
+
+            }
+
+            cout << "\033[40m" << " | " << endl;
+            
+
+
 
         }
         system("CLS");
-        if (j == 8) {
-            j = 0;
-        }
     }
 }
