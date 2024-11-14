@@ -6,7 +6,7 @@ using namespace std;
 
 int** create(int** arr, int rows, int size) {
 	// создание массива, передаём двойную ссылку, а затем созаем rows сторк, по n значениям
-	for (int i = 0; i < rows;i++) {
+	for (int i = 0; i < rows; i++) {
 		arr[i] = new int[size];
 	}
 	return arr;
@@ -20,7 +20,7 @@ void viwe(int** arr, int rows, int size) {
 		}
 		cout << endl;
 	}
-	
+
 }
 
 int** play(int** arr, int rows, int size, string wasd) {
@@ -56,8 +56,8 @@ int** play(int** arr, int rows, int size, string wasd) {
 	if (wasd == "w") {
 		for (int i = 0; i < rows - 1; i += 1) {
 			for (int j = 0; j < size; j++) {
-				if (arr[i+1][j] == 0) {
-					swap(arr[i][j], arr[i+1][j]);
+				if (arr[i + 1][j] == 0) {
+					swap(arr[i][j], arr[i + 1][j]);
 					break;
 				}
 
@@ -68,10 +68,10 @@ int** play(int** arr, int rows, int size, string wasd) {
 	//двигаем ноль вниз
 	if (wasd == "s") {
 		int y = 0;
-		for (int i = 0; i < rows-1; i += 1) {
+		for (int i = 0; i < rows - 1; i += 1) {
 			for (int j = 0; j < size; j++) {
 				if (arr[i][j] == 0) {
-					swap(arr[i+1][j],arr[i][j] );
+					swap(arr[i + 1][j], arr[i][j]);
 					y++;
 				}
 
@@ -90,26 +90,26 @@ int** play(int** arr, int rows, int size, string wasd) {
 
 int main()
 {
-	int rows = 3;
+	int rows = 4;
 	//rows - строки (количество массивов)
 
-	int n = 3;
+	int n = 4;
 	//n - количество значений
 
-	int** field= new int*[rows];
+	int** field = new int* [rows];
 	//игровое поле
 
-	int rand[9] = { 6, 1, 3, 2, 7, 0, 4, 8, 5};
+	int rand[16] = { 3, 11, 1, 15, 6, 9, 8, 10, 12, 4, 5, 13, 2, 7, 0, 3 };
 	//рандомность поля
 
 	int z = 0;
 	// переменная заполнения
 
-	create(field,rows, n);
-  //создаём массив
+	create(field, rows, n);
+	//создаём массив
 
 
-  //заполняем массив
+	//заполняем массив
 	for (int i = 0; i < rows; i += 1) {
 		for (int j = 0; j < n; j++) {
 			field[i][j] = rand[z];
@@ -117,13 +117,13 @@ int main()
 		}
 	}
 
-  //выводим массив
+	//выводим массив
 	viwe(field, rows, n);
-  
+
 	cout << endl;
-  
+
 	string move;
-  
+
 	while (true) {
 		cin >> move;
 
