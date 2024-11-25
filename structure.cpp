@@ -1,27 +1,28 @@
-/******************************************************************************
-
-Welcome to GDB Online.
-GDB online is an online compiler and debugger tool for C, C++, Python, Java, PHP, Ruby, Perl,
-C#, OCaml, VB, Swift, Pascal, Fortran, Haskell, Objective-C, Assembly, HTML, CSS, JS, SQLite, Prolog.
-Code, Compile, Run and Debug online from anywhere in world.
-
-*******************************************************************************/
 #include <iostream>
 using namespace std;
 struct node {
     int vale;
+    node* left = nullptr;
     node* next = nullptr;
 };
+
+struct giganode {
+    int vale;
+    giganode* left;
+    giganode* next;
+};
+
+
 
 node* krytanode(int size) {
     node* head = new node();
     node* carrent = head;
-    for (int i = 0; i < size-1; i++) {
+    for (int i = 0; i < size - 1; i++) {
 
         carrent->next = new node();
-         carrent = carrent->next;
-         carrent->vale = i+1;
-       
+        carrent = carrent->next;
+        carrent->vale = i + 1;
+
     }
     return head;
 }
@@ -50,10 +51,10 @@ int nodemax(node* head) {
         if (carrent->next == nullptr) {
             break;
         }
-        if (carrent->vale <  carrent->next->vale) {
+        if (carrent->vale < carrent->next->vale) {
             max = carrent->next->vale;
         }
-        
+
         carrent = carrent->next;
     }
     return max;
@@ -108,17 +109,17 @@ node* noddel(int num, node* head) {
             delete z;
         }
         return head;
-   
+
     }
-  
+
 }
 
-node* krytanodeaaa( node* kryta) {
+node* krytanodeaaa(node* kryta) {
     node* head = new node();
     node* carrent = head;
-    while (kryta != nullptr){
+    while (kryta != nullptr) {
         carrent->next = new node();
-        carrent->vale = kryta -> vale;
+        carrent->vale = kryta->vale;
         carrent = carrent->next;
         kryta = kryta->next;
     }
@@ -129,7 +130,7 @@ node* krytanodeaaa( node* kryta) {
     node* head = new node();
     node* carrent = head;
     while (kryta != nullptr) {
-        
+
         if (kryta->vale == num) {
             carrent = carrent->next;
             kryta = kryta->next;
@@ -143,19 +144,73 @@ node* krytanodeaaa( node* kryta) {
 }
 */
 
+giganode* hehe(int size = 20) {
+    giganode* head = new giganode();
+    giganode* carrent = head;
+    carrent->vale = 0;
+    carrent->left = nullptr;
+    for (int i = 1; i < size ; i++) {
+        carrent->next = new giganode();
+        carrent->next->left = carrent;
+        carrent = carrent->next;
+        carrent->vale = i;
+    }
+    return head;
+}
+
+void printgiganode(giganode* head) {
+    giganode* carrent = head;
+    while (carrent != nullptr) {
+        cout << carrent->vale << " ";
+        carrent = carrent->next;
+    }
+
+}
+
+void giganodeq(giganode* head, int index) {
+    giganode* carrent = head;
+    while (carrent != nullptr) {
+        if (carrent->vale == index) {
+            cout << carrent->left->vale << " ";
+            cout << carrent->next->vale << " ";
+            break;
+        }
+        //cout << carrent->left->vale << " ";
+        carrent = carrent->next;
+    }
+
+}
+
+giganode* giganodedele(giganode* head, int index) {
+    giganode* carrent = head;
+    while (carrent != nullptr) {
+        if (carrent->vale == index) {
+            //giganode* x = carrent->next->;
+            carrent->left = carrent->next;
+            giganode* y = carrent->next;
+            carrent->next = carrent->next->next;
+            delete carrent;
+            carrent = y;
+        }
+        //cout << carrent->left->vale << " ";
+        /*if (carrent->next == nullptr) {
+            break;
+        }*/
+        carrent = carrent->next;
+        
+    }
+    return head;
+
+}
+
 int main()
 {
 
-    node* test = krytanode(10);
-    printnode(test);
-    cout << endl;
-    int zzz = nodemax(test);
-    cout <<zzz <<endl;
-    zzz = nodemin(test);
-    cout << zzz << endl;
-    zzz = SumOfList(test);
-    cout << zzz << endl;
-    node* teeest = krytanodeaaa( test);
-    printnode(teeest);
-   
+    giganode* test = hehe();
+    //printgiganode(test);
+    giganodeq(test, 4);
+    giganode* testtwo = giganodedele(test, 4);
+    printgiganode(testtwo);
+    
+
 }
