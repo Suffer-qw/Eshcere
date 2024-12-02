@@ -4,6 +4,7 @@
 #include <iostream>
 using namespace std;
 
+//это ну короче нод
 struct Node{
 
     int value;
@@ -11,6 +12,8 @@ struct Node{
     Node* right;
 };
 
+
+//это я пытался дерево сделать 
 Node* createNode(int data) {
     Node* newnode = new Node();
     newnode->value = data;
@@ -18,6 +21,7 @@ Node* createNode(int data) {
     return newnode;
 }
 
+//это  создание списока вперёд и назад 
 Node* create(int size) {
 
     Node* head = new Node();
@@ -44,6 +48,7 @@ Node* create(int size) {
     return head;
 }
 
+//это смотреть список 
 void wive(Node* head) {
     Node* carret = head;
     while (carret != nullptr) {
@@ -53,6 +58,7 @@ void wive(Node* head) {
     cout << endl;
 }
 
+//это я пытался сделать просмотр дерева
 void wiveroot(Node* head) {
     Node* carret = head;
     cout << carret->value;
@@ -71,6 +77,7 @@ void wiveroot(Node* head) {
 }
 
 
+//чписка нет, но с деревом игрался 
 int main()
 {
     Node* root = createNode(1);
