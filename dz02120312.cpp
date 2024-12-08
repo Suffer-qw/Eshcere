@@ -1,11 +1,8 @@
-// recurs.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
-//
-
 #include <iostream>
-#include "windows.h"
 #include "string"
 using namespace std;
 
+//заменяет гласную букву на выбранный симвл
 string strq(string txt, string use) {
     string qq = "aeiouy";
     int i = 0;
@@ -23,44 +20,23 @@ string strq(string txt, string use) {
     return txt;
 }
 
-
-
-
-int qqnum(string txt) {
-    string qq = "aeiouy";
-    int qwe = 0;
-    int i = 0;
-    while (qq[i] != NULL) {
-        int z = 0;
-        while (txt[z] != NULL)
-        {
-            if (qq[i] == txt[z]) {
-                qwe++;
-            }
-            z++;
-        }
-        i++;
-    }
-    return qwe;
-}
-
-
+//строка на симыол вперёд
 string up(string txt) {
     int z = 0;
 
-        while (txt[z] != NULL)
-        {
-            if (int(txt[z]) >= 97 || int(txt[z]) >= 122) {
-                txt[z] = int(txt[z])-32;
-            }
-            z++;
+    while (txt[z] != NULL)
+    {
+        if (int(txt[z]) >= 97 || int(txt[z]) >= 122) {
+            txt[z] = int(txt[z]) - 32;
         }
-        
+        z++;
+    }
+
     return txt;
 }
 
+//строка на симыол назад
 string down(string txt) {
-    string qq = "aeiouy";
     int z = 0;
 
     while (txt[z] != NULL)
@@ -74,7 +50,7 @@ string down(string txt) {
     return txt;
 }
 
-
+//вывод
 void gg(string test) {
     int z = 0;
     while (test[z] != NULL)
@@ -85,29 +61,78 @@ void gg(string test) {
     cout << endl;
 }
 
-string crypt(string txt, int plus) {
 
+//проверка на полином
+void polinom(string test) {
     int z = 0;
-    int qq = 0;
+    while (test[z] != NULL)
+    {
+        z++;
+    }
     int y = 0;
-    string plusplus  = txt;
-        while (txt[z] != NULL)
+    string tset = test + " ";
+
+    while (z > -1)
+    {
+        tset[y] = test[z];
+        z--;
+        y++;
+    }
+    cout << test;
+    cout << " " << tset << endl;
+    if (tset == test) {
+        cout << "polinom" << endl;
+    }
+    else
+        cout << "nixya ne polinom" << endl;
+}
+
+//проверка на повторяющиеся буквы
+void dobleword(string test) {
+    int i = 0;
+    int z = 0;
+    string testcopy = test + " ";
+    string noup = "";
+    cout << test;
+    cout << " " << testcopy << endl;
+    while (test[i] != NULL) {
+        int z = 0;
+        while (testcopy[z] != NULL)
         {
-            if (qq + plus >= txt.size()) {
-                plusplus[y] = txt[z];
-                y++;
-                z++;
-                continue;
+            if (test[i] == testcopy[z]) {
+                testcopy[z] = noup[0];
             }
-            plusplus[qq + plus] = txt[z];
-
             z++;
-            qq++;
-
-            
         }
+        i++;
+    }
+    cout << " " << testcopy << endl;
+}
 
-        return plusplus;
+//буква-число
+void numword(string txt) {
+    string qq = "abcdefghijklmnopqrstuvwxyz";
+    int i = 0;
+    int size = qq.size();
+    int* array = new int[size] + 1;
+    while (qq[i] != NULL)
+    {
+        array[i] = i;
+        i++;
+    }
+
+   int z = 0;
+    while (txt[z] != NULL)
+    {
+        int count = int(txt[z]) - 97;
+
+        cout  << array[count]+1 << " " ;
+        z++;
+    }
+    cout << endl;
+    // 97 98 99 90
+    //122 121 120 119
+
 }
 
 int Num(char word) {
@@ -122,7 +147,7 @@ int Num(char word) {
 
 }
 
-//97 122
+//шифрование
 void qrts(string txt) {
     string qq = "abcdefghijklmnopqrstuvwxyz";
     int z = 0;
@@ -137,75 +162,13 @@ void qrts(string txt) {
     cout << endl;
     // 97 98 99 90
     //122 121 120 119
-   
-}
-
-void numword(string txt) {
-    string qq = "abcdefghijklmnopqrstuvwxyz";
-    int i = 0;
-    int size = qq.size();
-    int* array = new int[size]+1;
-    while (qq[i] != NULL)
-    {
-        array[i] = i;
-        i++;
-    }
-
-    int z = 0;
-    while (txt[z] != NULL)
-    {
-        int count = int(txt[z]) - 97;
-
-        cout << txt[z] <<" " << array[count] << " "<< endl;
-        z++;
-    }
-    cout << endl;
-    // 97 98 99 90
-    //122 121 120 119
 
 }
 
 
 int main()
 {
-    string test = "abcdefghijklmnopqrstuvwxyz";
+    string test = "hello";
     gg(test);
-
-    // 97 98 99 90
-    //122 121 120 119 
-    
     qrts(test);
-    numword(test);
-
-    /*
-    int test11 = test[24];
-    string word = " ";
-    word[0] = test[24] + ((122 - 97) - Num(test[24]));
-    cout << test[24] <<" " << int(test[24])<<endl;
-    cout << word[0] << " " << int(word[0]) <<endl;
-    */
-     
-    string test2 = up(test);
-   // gg(test2);
-
-    string test3 = down(test2);
-   // gg(test3);
-    /*int z = 0;
-    while (true) {
-
-        Sleep(100);
-        string test4 = crypt(test, z);
-        if (z == test.size()) {
-            z = 0;
-        }
-        gg(test4);
-        z++;
-    }*/
-
-    //cout << qqnum(test);
-    //cout << int('a') << " " << int('z') << endl;
-    //cout << int(test[0]) << " " << int(test[3]) << endl;
-    //cout << int('A') << " " << int('Z') << endl;
 }
-
-
